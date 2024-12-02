@@ -64,7 +64,7 @@ const handlePanel =()=>{
               position: "fixed",
               top: 0,
               right: 0,
-              width: "280px",
+              width: "307px",
               height: "100vh",
               backgroundColor: "#ffffff",
               zIndex: 1000,
