@@ -13,11 +13,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
- ### Routes have been added 
+
+### Routes have been added 
  Click on  the orders  card to navigate to orderlist page.
- Pagination is working , Breadcrum is working , Notification panel is working to check click on bell icon 
+ Pagination is working , Breadcrum is working ,
+ Notification panel is working to check click on bell icon 
  For time beinge I have not implemented theme and responsiveness.
  
+########  Deployed app Link #####
+https://unrivaled-chimera-df532b.netlify.app/
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
