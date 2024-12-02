@@ -45,7 +45,7 @@ const StyledRecButton = styled(Button)(({ theme }) => ({
 
 const Sidebar = () => {
   
-  const [showUser, setshowUser] = useState(false)
+  const [showUser, setshowUser] = useState(true)
 
   const handleShowUser=()=>{
     setshowUser(!showUser)
