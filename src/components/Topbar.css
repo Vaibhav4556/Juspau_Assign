@@ -1,0 +1,16 @@
+.breadcrumb{
+    display: flex;
+    align-items: center;
+    
+}
+
+.topbar{
+    height: 100%;
+    align-items: center;
+    display: flex;
+    /* gap:"8px"; */
+    justify-content: space-between;
+    padding-right: 28px;
+    
+     
+}

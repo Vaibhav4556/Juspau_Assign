@@ -1,0 +1,35 @@
+.profile{
+    padding: 4px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.fontprofile{
+    font-size: 14px;
+    font-family: inter;
+    margin: 0px;
+    color: #1C1C1C;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: var(--body_background);
+}
+.favbtntext{
+    font-size: 14px;
+    font-family: inter;
+    margin: 0px;
+}
+.recebtntext{
+    font-size: 14px;
+    font-family: inter;
+    margin: 0px;
+}
+.dashboard{
+    padding: 4px 12px;
+    color: #1C1C1C66;
+}
