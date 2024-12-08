@@ -4,8 +4,12 @@ import bugImg from "../assets/BugBeetle.png";
 import user from "../assets/User.png";
 import Brodcast from "../assets/Broadcast.png"
 import FemaleProf from "../assets/Female08.png"
-
+import {  Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { MyContext } from "../MyContext";
+import  { useContext } from "react";
 function Notification() {
+  const { dark } = useContext(MyContext);
     const userData= [
 
         {User:"Natali Craig" , Project:"Landing Page", },
@@ -14,10 +18,29 @@ function Notification() {
         {User:"Orlando Diggs" , Project:"Admin Dashboard"},
         {User:"Andii Lane" , Project:"App Landing Page" },
       ]
+
+      const StyledTypography = styled(Typography)(({ theme }) => ({
+        color: dark? "#FFFFFF" :"#1C1C1C",
+        fontSize: '14px', 
+        fontWeight:"400",
+        fontFamily:"inter",
+        '&:hover': {
+          color: theme.palette.primary.main, 
+        },
+      }));
+
+      const StyledTypographytime = styled(Typography)(({ theme }) => ({
+        fontSize: '14px', 
+        fontWeight:"400",
+        fontFamily:"inter",
+    color: dark?'#FFFFFF66':'#1C1C1C66',
+    paddingLeft:"32px",
+        
+      }));
   return (
     <div className="notifationContainer">
         <div className="notificationBox" >
-      <p className="Notheading">Notifications</p>
+      <p className="Notheading"  style={{color:dark?"#FFFFFF":"#1C1C1C"}}>Notifications</p>
       <div style={{marginTop:"28px"}}>
       <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
         <img
@@ -30,9 +53,9 @@ function Notification() {
             borderRadius: "8px",
           }}
         />
-        <p className="bugtext">You have a bug that needs to resolve</p>
+        <StyledTypography >You have a bug that needs to resolve</StyledTypography>
       </div>
-      <p className="dateNotify">Just Now</p>
+      <StyledTypographytime >Just Now</StyledTypographytime>
       </div>
 
       <div>
@@ -47,9 +70,9 @@ function Notification() {
             borderRadius: "8px",
           }}
         />
-        <p className="bugtext">New user registered</p>
+        <StyledTypography >New user registered</StyledTypography>
       </div>
-      <p className="dateNotify">59 minutes ago</p>
+      <StyledTypographytime >59 minutes ago</StyledTypographytime>
       </div>
 
       <div>
@@ -64,9 +87,9 @@ function Notification() {
             borderRadius: "8px",
           }}
         />
-        <p className="bugtext">You have a bug that needs to resolve</p>
+        <StyledTypography >You have a bug that needs to resolve</StyledTypography>
       </div>
-      <p className="dateNotify">12 hours ago</p>
+      <StyledTypographytime >12 hours ago</StyledTypographytime>
       </div>
 
       <div>
@@ -81,65 +104,65 @@ function Notification() {
             borderRadius: "8px",
           }}
         />
-        <p className="bugtext">Andi Lane subscribed to you</p>
+        <StyledTypography >Andi Lane subscribed to you</StyledTypography>
       </div>
-      <p className="dateNotify">Today,11.59 AM</p>
+      <StyledTypographytime >Today,11.59 AM</StyledTypographytime>
       </div>
       </div>
 
       <div className="ActivityBox">
-      <p className="Notheading">Notifications</p>
+      <p className="Notheading"  style={{color:dark?"#FFFFFF":"#1C1C1C"}}>Activities</p>
       <div>
       <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
       <img style={{maxWidth:"24px"}}src={FemaleProf} alt="pic"/>
-        <p className="bugtext">You have a bug that needs to resolve</p>
+        <StyledTypography >You have a bug that needs to resolve</StyledTypography>
       </div>
-      <p className="dateNotify">Just Now</p>
+      <StyledTypographytime >Just Now</StyledTypographytime>
       </div>
 
       <div>
       <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
       <img style={{maxWidth:"24px"}}src={FemaleProf} alt="pic"/>
-        <p className="bugtext">Released a new version</p>
+        <StyledTypography >Released a new version</StyledTypography>
       </div>
-      <p className="dateNotify">59 minutes ago</p>
-      </div>
-
-      <div>
-      <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-      <img style={{maxWidth:"24px"}}src={FemaleProf} alt="pic"/>
-        <p className="bugtext">Submitted a bug</p>
-      </div>
-      <p className="dateNotify">12 hours ago</p>
+      <StyledTypographytime >59 minutes ago</StyledTypographytime>
       </div>
 
       <div>
       <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
       <img style={{maxWidth:"24px"}}src={FemaleProf} alt="pic"/>
-        <p className="bugtext">Modified A data in page X</p>
+        <StyledTypography >Submitted a bug</StyledTypography>
       </div>
-      <p className="dateNotify">Today,11.59 AM</p>
+      <StyledTypographytime >12 hours ago</StyledTypographytime>
       </div>
 
       <div>
       <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
       <img style={{maxWidth:"24px"}}src={FemaleProf} alt="pic"/>
-        <p className="bugtext">Deleted a page in Project X</p>
+        <StyledTypography >Modified A data in page X</StyledTypography>
       </div>
-      <p className="dateNotify">Feb 2,2024</p>
+      <StyledTypographytime >Today,11.59 AM</StyledTypographytime>
+      </div>
+
+      <div>
+      <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+      <img style={{maxWidth:"24px"}}src={FemaleProf} alt="pic"/>
+        <StyledTypography >Deleted a page in Project X</StyledTypography>
+      </div>
+      <StyledTypographytime >Feb 2,2024</StyledTypographytime>
       </div>
       </div>
 
 
       <div className="contactBox">
-      <p className="Notheading">Contacts</p>
+      <p className="Notheading"  style={{color:dark?"#FFFFFF":"#1C1C1C"}}>Contacts</p>
       {userData.map((item,index)=>(
 
      
     
       <div style={{ display: "flex", gap: "8px", alignItems: "center",marginTop:"16px" }}>
         <img style={{maxWidth:"24px"}}src={FemaleProf} alt="pic"/>
-        <p className="bugtext">{item.User}</p>
+        <StyledTypography >{item.User}</StyledTypography>
       </div>
      
     ))}

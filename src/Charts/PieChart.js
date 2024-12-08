@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
+import { color } from 'echarts';
+import { MyContext } from "../MyContext";
+import  { useContext } from "react";
 
 const Chart = () => {
+  const { dark } = useContext(MyContext);
   const options = {
     
     tooltip: {
@@ -10,8 +14,11 @@ const Chart = () => {
     },
     legend: {
       orient: 'verticle', // Arrange legend items in a row
-      bottom: '0',        // Position legend below the pie chart
-      left: 'center',       // Center legend horizontally
+      bottom: '-3px',        // Position legend below the pie chart
+      left: 'center', 
+      textStyle: {
+        color: dark ? '#ffffff' : 'grey',    // Set the text color to red
+      },
       data: ['Direct', 'Affiliate', 'Sponsored', 'E-mail'],
     },
     series: [
@@ -28,8 +35,9 @@ const Chart = () => {
         emphasis: {
           label: {
             show: true,
-            fontSize: '20',
+            fontSize: '16px',
             fontWeight: 'bold',
+           
           },
         },
         labelLine: {
@@ -45,7 +53,7 @@ const Chart = () => {
     ],
   };
 
-  return <ReactECharts option={options} style={{ padding:"0",height:"80%", width: '90%' }} />;
+  return <ReactECharts option={options} style={{ height:"100%", width: '40%' }} />;
 };
 
 export default Chart;

@@ -16,19 +16,18 @@ import Checkbox from "../assets/Rectangle.png"
 import FemaleProf from "../assets/Female08.png"
 import Calender from "../assets/CalendarBlank.png"
 import Pagination from "@mui/material/Pagination";
-const CustomTableCell = styled(TableCell)(({ theme }) => ({
-  padding:"8px 12px",
-   borderBottom: "1px solid #1C1C1C33" ,
-   color:"#1C1C1C66",fontFamily:"inter",
-   fontSize:"12px"
-}));
+import darkCalender from "../assets/darkCalender.png"
+import darkCheckbox from "../assets/darkCheckbox.png"
+import darkSearchIcon from "../assets/darkSerachIcon.png"
+import plusDark from "../assets/plusDark.png"
+import filterDark from "../assets/filterDark.png"
+import updownDark from "../assets/UpdownDark.png"
 
-const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
- padding:"8px 12px",
-  borderBottom: "1px solid #1C1C1C33" ,
-  color:"#1C1C1C",fontFamily:"inter",
-  fontSize:"12px"
-}));
+import { MyContext } from "../MyContext";
+import  { useContext } from "react";
+
+
+
 const StyledFavButton = styled(Button)(({ theme }) => ({
   color: '#1C1C1C66', 
   minWidth:"auto",
@@ -37,29 +36,7 @@ const StyledFavButton = styled(Button)(({ theme }) => ({
   
 }));
 
-const StyledTextFieldSearch = styled(TextField)(({ theme }) => ({
-  "& .MuiOutlinedInput-root": {
-    borderRadius: "8px", // Rounded corners for the input
-    height: "28px", // Input height
-    paddingRight: "8px",
-    backgroundColor: "#1C1C1C0D",
-    "& fieldset": {
-      borderColor: "#1C1C1C0D", // Default border color
-    },
-    "&:hover fieldset": {
-      borderColor: "#1C1C1C0D",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "#1C1C1C0D",
-    },
-  },
-  "& input::placeholder": {
-    fontSize: "14px", // Adjust placeholder size
-    opacity: 1, // Ensure placeholder is visible
-    fontFamily: "inter",
-    color: "#1C1C1C33",
-  },
-}));
+
 
 const OrderListData= [
   {OrderId:"#CM9801" ,User:"Natali Craig" , Project:"Landing Page", Address:"Meadow Lane Oakland",Date:"Just now",Status:"In Progress"},
@@ -79,7 +56,7 @@ const OrderListData= [
 
 function getStatusColor(status) {
   switch (status) {
-    case 'InProgress':
+    case 'In Progress':
       return '#8A8CD9';
     case 'Complete':
       return '#4AA785';
@@ -87,8 +64,8 @@ function getStatusColor(status) {
       return '#59A8D4';
     case 'Approved':
       return '#FFC555';
-    case 'Rejected':
-      return '#1C1C1C66';
+    case 'Rejeceted':
+      return '#FFFFFF66';
     default:
       return '#000000'; 
   }
@@ -99,26 +76,65 @@ function getStatusColor(status) {
 function About() {
   const itemsPerPage = 8; 
   const [currentPage, setCurrentPage] = useState(1);
+  const { showNotifiationPanel,dark } = useContext(MyContext);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentData = OrderListData.slice(startIndex, startIndex + itemsPerPage);
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
 
+  const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
+    padding:"8px 12px",
+     borderBottom: "1px solid #1C1C1C33" ,
+     fontFamily:"inter",
+     fontSize:"12px",
+        color:dark?"#FFFFFF":"#1C1C1C"
+   }));
+
+   const CustomTableCell = styled(TableCell)(({ theme }) => ({
+    padding:"8px 12px",
+     borderBottom: "1px solid #1C1C1C33" ,
+     color:dark?"#FFFFFF66":"#1C1C1C66",fontFamily:"inter",
+     fontSize:"12px"
+  }));
+
+  const StyledTextFieldSearch = styled(TextField)(({ theme }) => ({
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "8px", // Rounded corners for the input
+      height: "28px", // Input height
+      paddingRight: "8px",
+      backgroundColor:dark?"#1C1C1C66":"#1C1C1C0D",
+      "& fieldset": {
+        borderColor:dark?"#FFFFFF1A": "#1C1C1C0D", // Default border color
+      },
+      "&:hover fieldset": {
+        borderColor:dark?"#FFFFFF1A": "#1C1C1C0D",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: dark?"#FFFFFF1A":"#1C1C1C0D",
+      },
+    },
+    "& input::placeholder": {
+      fontSize: "14px", 
+      opacity: 1, 
+      fontFamily: "inter",
+      color: dark?"#FFFFFF1A":"#1C1C1C33",
+    },
+  }));
   return (
     <div className="containerabout">
-       <p className="heading">Order List</p>
+       <p className="heading" style={{color:dark?"#FFFFFF":"#1C1C1C"}}>Order List</p>
 
-       <div className="filterbar">
+       <div className="filterbar" style={{background: dark?"#282828":"#F7F9FB"}}>
           <div classname="btns">
             <StyledFavButton>
-              <img src ={add} width="20px" alt="add"/>
+              <img src ={dark? plusDark:add} width="20px" alt="add"/>
             </StyledFavButton>
             <StyledFavButton>
-            <img src ={filter} width="20px" alt="filter"/>
+            <img src ={dark?filterDark:filter} width="20px" alt="filter"/>
             </StyledFavButton>
             <StyledFavButton>
-            <img src ={arrowUpdown} width="20px" alt="arrowUpdown"/>
+            <img src ={dark?updownDark:arrowUpdown} width="20px" alt="arrowUpdown"/>
             </StyledFavButton>
           </div>
           <StyledTextFieldSearch
@@ -127,7 +143,7 @@ function About() {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <img src={search} style={{ width: "16px" }} alt="search icon" />
+                <img src={dark ? darkSearchIcon:search} style={{ width: "16px" }} alt="search icon" />
               </InputAdornment>
             ),
 
@@ -142,7 +158,9 @@ function About() {
       <Table  aria-label="caption table">
         <TableHead>
           <TableRow>
-          <CustomTableCell ><img  style={{width:"16px"}} src={Checkbox} alt='checkbox'/></CustomTableCell>
+          <CustomTableCell  >
+            <img  style={{width:"16px"}} src={dark?darkCheckbox:Checkbox} alt='checkbox'/>
+            </CustomTableCell>
             <CustomTableCell >Order ID</CustomTableCell>
             <CustomTableCell align="left">User</CustomTableCell>
             <CustomTableCell  align="left">Project</CustomTableCell>
@@ -155,7 +173,7 @@ function About() {
         {currentData.map((row) => (
             <TableRow key={row.Name}>
               <CustomTableCellBody   align="left">
-              <img  style={{width:"16px"}} src={Checkbox} alt='checkbox'/>
+              <img  style={{width:"16px"}} src={dark?darkCheckbox:Checkbox} alt='checkbox'/>
               </CustomTableCellBody>
               <CustomTableCellBody  
                component="th" scope="row">
@@ -169,7 +187,7 @@ function About() {
               <CustomTableCellBody   align="left">{row.Address}</CustomTableCellBody>
               <CustomTableCellBody   align="left">
               <div style={{display:"flex",gap:"8px",alignItems:"center"}}>
-                <img style={{maxWidth:"24px"}}src={Calender} alt="pic"/>
+                <img style={{maxWidth:"24px"}}src={ dark?darkCalender:Calender} alt="pic"/>
                 {row.Date}</div>
                 </CustomTableCellBody>
               <CustomTableCellBody   align="left" style={{ color: getStatusColor(row.Status) }}>
@@ -194,11 +212,11 @@ function About() {
         size="large"
         sx={{
           "& .MuiPaginationItem-root": {
-            color: "#000000", 
+             color:dark?"#FFFFFF":"#1C1C1C"
           },
           "& .Mui-selected": {
-            backgroundColor: "#1C1C1C0D", 
-            color: "#000000", // 
+            backgroundColor: dark ?'#FFFFFF1A':"#1C1C1C0D", 
+            color:dark?"#FFFFFF":"#1C1C1C", // 
           },
         }}
       />

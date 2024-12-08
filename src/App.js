@@ -9,31 +9,51 @@ import About from './Pages/About';
 import Contact from './Pages/Contact';
 import Notification from './components/Notification';
 import { MyContext } from "./MyContext";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 const App = () => {
-const [showNotifiationPanel,SetShowNotificationPanel] =useState(true)
+const [showNotifiationPanel,SetShowNotificationPanel] =useState(false)
+
 const handlePanel =()=>{
   SetShowNotificationPanel(!showNotifiationPanel)
 }
+
+const handleDarkTheme =()=>{
+  setDark(!dark)
+  console.log("executed")
+}
+const [dark, setDark] = useState(
+  localStorage.getItem("selectedTheme") === "dark"
+);
+
+// Toggle theme function
+const toggleTheme = () => {
+  const newTheme = !dark; // Toggle current theme
+  setDark(newTheme); // Update state
+  localStorage.setItem("selectedTheme", newTheme ? "dark" : "light"); // Save preference
+};
+
+
   return (
     <MyContext.Provider
-    value={{ handlePanel }}
+    value={{ handlePanel,showNotifiationPanel,dark,handleDarkTheme,toggleTheme }}
   >
     <BrowserRouter>
-      <div className="app">
+      <div className="app" style={{background:dark?"black":"",minHeight:"93vh"}}>
         {/* Sidebar */}
         <div
           style={{
             position: "fixed",
             top: 0,
             left: 0,
-            width: "179px",
+            width: "180px",
             height: "100vh",
             backgroundColor: "#ffffff",
             zIndex: 1000,
             overflowY: "auto",
             padding: "20px 16px",
             border: "1px solid #1C1C1C1A",
+            borderColor:dark?"#FFFFFF1A":"#1C1C1C1A",
+            background:dark?"#000000":""
           }}
         >
           <Sidebar />
@@ -46,12 +66,14 @@ const handlePanel =()=>{
             top: 0,
             left: "212px", 
             width: showNotifiationPanel
-              ? "calc(100% - 552px)" 
-              : "calc(100% - 212px)", 
+              ? "calc(100% - 550px)" 
+              : "calc(100% - 268px)", 
             backgroundColor: "#ffffff",
             zIndex: 999,
             border: "1px solid #1C1C1C1A",
             padding: "20px 28px",
+            background:dark?"#000000":"",
+            borderColor:dark?"#FFFFFF1A":"#1C1C1C1A",
           }}
         >
           <Topbar />
@@ -64,13 +86,15 @@ const handlePanel =()=>{
               position: "fixed",
               top: 0,
               right: 0,
-              width: "307px",
+              width: "248px",
               height: "100vh",
               backgroundColor: "#ffffff",
               zIndex: 1000,
               overflowY: "auto",
               padding: "16px 16px",
               border: "1px solid #1C1C1C1A",
+              borderColor:dark?"#FFFFFF1A":"#1C1C1C1A",
+              background:dark?"black":""
             }}
           >
             <Notification />
@@ -83,7 +107,7 @@ const handlePanel =()=>{
             marginTop: "68px",
             marginLeft: "212px", 
             width: showNotifiationPanel
-              ? "calc(100% - 552px)" 
+              ? "calc(100% - 492px)" 
               : "calc(100% - 212px)", 
             overflowY: "auto",
             display: "flex",

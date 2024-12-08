@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Home.css"
-import { Card } from '@mui/material'
+import { Card,Button } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import upriseArrow from "../assets/ArrowRise.png"
@@ -17,21 +17,12 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import arrowriseDark from "../assets/ArrowRiseDark.png"
+import arrowfallDark from "../assets/ArrowFallDark.png"
 import { useNavigate } from 'react-router-dom';
-import Notification from '../components/Notification';
-const StyledTypography = styled(Typography)(({ theme }) => ({
-  color: "#1C1C1C",
-  fontSize: '14px', 
-  lineHeight: "20px", 
-  textTransform: 'capitalize', 
-  fontFamily:"inter",
-  fontWeight:"600",
-  letterSpacing: '0.5px', 
-  margin: '10px 0', 
-  '&:hover': {
-    color: theme.palette.primary.main, 
-  },
-}));
+import { MyContext } from "../MyContext";
+import  { useContext } from "react";
+
 
 const StyledTypographyReading = styled(Typography)(({ theme }) => ({
   color: "#1C1C1C",
@@ -72,12 +63,7 @@ const Tabledata= [{Name:"ASOS Ridley High Waist" ,Price:"$79.49" , Quantity:"82"
   {Name:"Macro Shoes" ,Price:"$79.49" , Quantity:"64", Amount:"$1,965.81"},
 ]
 
-const CustomTableCell = styled(TableCell)(({ theme }) => ({
-   padding:"8px 12px",
-    borderBottom: "1 px solid #1C1C1C33" ,
-    color:"#1C1C1C66",fontFamily:"inter",
-    fontSize:"12px"
-}));
+
 
 const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
   padding:"8px 12px",
@@ -87,26 +73,58 @@ const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
 }));
 function Home() {
 
+  const { showNotifiationPanel,dark } = useContext(MyContext);
   const navigate = useNavigate(); 
   const goToOrderList = () => {
     navigate('/orderlist'); 
   };
+
+  
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  color: "#1C1C1C",
+  fontSize: '14px', 
+  lineHeight: "20px", 
+  textTransform: 'capitalize', 
+  fontFamily:"inter",
+  fontWeight:"600",
+  letterSpacing: '0.5px', 
+  margin: '10px 0', 
+  '&:hover': {
+    color: theme.palette.primary.main, 
+  },
+}));
+const CustomTableCell = styled(TableCell)(({ theme }) => ({
+  padding:"8px 12px",
+   borderBottom: "1 px solid #1C1C1C33" ,
+   fontFamily:"inter",
+   fontSize:"12px",
+   color:dark?"#FFFFFF":"1C1C1C66"
+}));
+
+const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
+  padding:"8px 12px",
+   borderBottom: "1 px solid #1C1C1C33" ,
+ fontFamily:"inter",
+   fontSize:"12px",
+     color:dark?"#FFFFFF":"#1C1C1C"
+}));
   return (
     <div className="container">
-      <div>
-      <p className="pageheading">eCommerce</p>
-      </div>
+     
+      <p className="pageheading" style={{color:dark?"#FFFFFF":"#1C1C1C"}}>eCommerce</p>
       
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <div className="visualContainers">
+      
+      <div style={{display:"flex",justifyContent:"center",width:"100%"}}>
+      <div className="visualContainers" style={{width:"100%"}} >
         <div className="visualContainer1">
           <div className="visualContainer1a">
-            <div className="cardrow1">
+            <div className="cardrow1" style={{maxWidth:"50%",width:"calc(50% - 14px)"}}>
               <Card
                 style={{
                   padding: "24px 32px",
                   backgroundColor: "#E3F5FF",
                   borderRadius: "16px",
+                  width:"calc(100% - 64px)"
                 }}
               >
                 <StyledTypography>Customers</StyledTypography>
@@ -114,7 +132,8 @@ function Home() {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    columnGap: "18px",
+                    justifyContent:"space-between"
+                   
                   }}
                 >
                   <StyledTypographyReading>3,781</StyledTypographyReading>
@@ -132,25 +151,26 @@ function Home() {
               <Card
                 style={{
                   padding: "24px 32px",
-                  backgroundColor: "#F7F9FB",
+                  backgroundColor:dark?"#282828": "#F7F9FB",
                   borderRadius: "16px",
+                   width:"calc(100% - 64px)"
                 }}
               >
-                <StyledTypography>Revenue</StyledTypography>
+                <StyledTypography style={{color:dark?"#FFFFFF":"#1C1C1C"}}>Revenue</StyledTypography>
                 <div
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    columnGap: "18px",
+                    justifyContent:"space-between"
                   }}
                 >
-                  <StyledTypographyReading>$695</StyledTypographyReading>
+                  <StyledTypographyReading style={{color:dark?"#FFFFFF":"#1C1C1C"}}>$695</StyledTypographyReading>
 
                   <div style={{ display: "flex", alignItems: "center" }}>
-                    <StyledTypographytext>+15.03%</StyledTypographytext>
+                    <StyledTypographytext style={{color:dark?"#FFFFFF":"#1C1C1C"}}>+15.03%</StyledTypographytext>
                     <img
-                      style={{ width: "16px" }}
-                      src={upriseArrow}
+                      style={{ width: "16px"}}
+                      src={ dark?arrowriseDark:upriseArrow}
                       alt="uprisearrow"
                     />
                   </div>
@@ -158,29 +178,30 @@ function Home() {
               </Card>
             </div>
 
-            <div className="cardrow2" onClick={goToOrderList}>
+            <div className="cardrow2" onClick={goToOrderList} style={{maxWidth:"50%",width:"calc(50% - 14px)"}}>
               <Card
                 style={{
                   padding: "24px 32px",
-                  backgroundColor: "#F7F9FB",
+                  backgroundColor:dark?"#282828": "#F7F9FB",
                   borderRadius: "16px",
+                    width:"calc(100% - 64px)"
                 }}
               >
-                <StyledTypography >Orders</StyledTypography>
+                <StyledTypography style={{color:dark?"#FFFFFF":"#1C1C1C"}} >Orders</StyledTypography>
                 <div
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    columnGap: "18px",
+                    justifyContent:"space-between"
                   }}
                 >
-                  <StyledTypographyReading>1,219</StyledTypographyReading>
+                  <StyledTypographyReading style={{color:dark?"#FFFFFF":"#1C1C1C"}}>1,219</StyledTypographyReading>
 
                   <div style={{ display: "flex", alignItems: "center" }}>
-                    <StyledTypographytext>-0.03%</StyledTypographytext>
+                    <StyledTypographytext style={{color:dark?"#FFFFFF":"#1C1C1C"}}>-0.03%</StyledTypographytext>
                     <img
                       style={{ width: "16px" }}
-                      src={arrowFall}
+                      src={dark?arrowfallDark:arrowFall}
                       alt="uprisearrow"
                     />
                   </div>
@@ -191,14 +212,16 @@ function Home() {
                   padding: "24px 32px",
                   backgroundColor: "#E5ECF6",
                   borderRadius: "16px",
+                  width:"calc(100% - 64px)"
                 }}
               >
-                <StyledTypography>Growth</StyledTypography>
+                <StyledTypography >Growth</StyledTypography>
                 <div
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    columnGap: "18px",
+                    justifyContent:"space-between",
+                     width:"100%"
                   }}
                 >
                   <StyledTypographyReading>$695</StyledTypographyReading>
@@ -215,22 +238,25 @@ function Home() {
               </Card>
             </div>
           </div>
-          <div className="visualContainer1b">
+           <div className="visualContainer1b" style={{background:dark?"#282828": "#F7F9FB",}}>
             <p
               style={{
                 fontFamily: "inter",
                 fontSize: "14px",
                 fontWeight: 600,
                 margin: "0",
+                color:dark?"#FFFFFF":"#1C1C1C"
               }}
             >
               Projections vs Actuals
             </p>
             <PieChart />
-          </div>
+          </div> 
         </div>
+
+
         <div className="visualContainer2">
-          <div className="visualContainer2a">
+          <div className="visualContainer2a" style={{background:dark?"#282828": "#F7F9FB"}}>
             <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
               <p
                 style={{
@@ -238,15 +264,18 @@ function Home() {
                   fontSize: "14px",
                   fontWeight: 600,
                   margin: "0",
+            color:dark?"#FFFFFF":"#1C1C1C"
                 }}
               >
                 Revenue
               </p>
               <div style={{ color: "#1C1C1C33" }}>|</div>
               <div style={{ display: "flex", gap: "8px" }}>
-                <img width="16px" src={blackdot} alt="blackdot" />
+                <img width="16px" src={dark?bluedot:blackdot} alt="blackdot" />
                 <p
-                  style={{ fontFamily: "inter", fontSize: "14px", margin: "0" }}
+                  style={{ fontFamily: "inter", fontSize: "14px", margin: "0",
+                    color:dark?"#FFFFFF":"#1C1C1C"
+                   }}
                 >
                   Current Week
                 </p>
@@ -256,6 +285,7 @@ function Home() {
                     fontSize: "14px",
                     fontWeight: 600,
                     margin: "0",
+                    color:dark?"#FFFFFF":"#1C1C1C"
                   }}
                 >
                   $58,211
@@ -264,7 +294,9 @@ function Home() {
               <div style={{ display: "flex", gap: "8px" }}>
                 <img width="16px" src={bluedot} alt="blackdot" />
                 <p
-                  style={{ fontFamily: "inter", fontSize: "14px", margin: "0" }}
+                  style={{ fontFamily: "inter", fontSize: "14px", margin: "0",
+                    color:dark?"#FFFFFF":"#1C1C1C"
+                   }}
                 >
                   Previous Week
                 </p>
@@ -274,6 +306,7 @@ function Home() {
                     fontSize: "14px",
                     fontWeight: 600,
                     margin: "0",
+                    color:dark?"#FFFFFF":"#1C1C1C"
                   }}
                 >
                   $68,768
@@ -281,9 +314,9 @@ function Home() {
               </div>
             </div>
 
-            <SmoothLineChart />
+            <SmoothLineChart theme={dark} />
           </div>
-          <div className="visualContainer2b">
+          <div className="visualContainer2b" style={{background:dark?"#282828": "#F7F9FB"}}>
             <div
               style={{
                 display: "flex",
@@ -297,31 +330,35 @@ function Home() {
                   fontFamily: "inter",
                   fontSize: "14px",
                   fontWeight: 600,
-                  marginTop: "16px",
+                  marginTop: "0px",
+                  textAlign:"start",
+                  width:"100%",
+                  color:dark?"#FFFFFF":"#1C1C1C"
                 }}
               >
                 Revenue By Location
               </p>
-              <img style={{ maxWidth: "152px" }} src={map} alt="map" />
+              <img style={{ width:"100%",maxWidth:"142px" }} src={map} alt="map" />
             </div>
             {worldData.map((item)=>(
-            <div style={{ padding: "0 24px" }}>
+            <div style={{ padding: "0px" }}>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div className="coloredline">{item.country}</div>
-                <div className="coloredline">{item.value}</div>
+                <div className="coloredline" style={{color:dark?"#FFFFFF":"#1C1C1C"}}>{item.country}</div>
+                <div className="coloredline" style={{color:dark?"#FFFFFF":"#1C1C1C"}}>{item.value}</div>
               </div>
               <div className="border"></div>
             </div>))}
           </div>
         </div>
-        <div className="visualContainer3">
-          <div className="visualContainer3a">
+        <div className="visualContainer3" >
+          <div className="visualContainer3a" style={{background:dark?"#282828": "#F7F9FB"}}>
           <p
               style={{
                 fontFamily: "inter",
                 fontSize: "14px",
                 fontWeight: 600,
                 margin: "0",
+                color:dark?"#FFFFFF":"#1C1C1C"
               }}
             >
               Top Selling Products
@@ -353,20 +390,23 @@ function Home() {
           </TableContainer>
 
           </div>
-          <div className="visualContainer3b">
+          <div className="visualContainer3b" style={{background:dark?"#282828": "#F7F9FB"}}>
             <div style={{display:"flex",flexDirection:"column",alignItems:"center",
-              justifyContent:"center",maxHeight:"100%",padding:"0 24px",height:"100%"}}>
+              justifyContent:"center",height:"90%",justifyContent:"space-around"}}>
             <p
                 style={{
                   fontFamily: "inter",
                   fontSize: "14px",
                   fontWeight: 600,
-                  margin:"0"
+                  margin:"0px",
+                  width:"100%",
+                  textAlign:"start",
+                     color:dark?"#FFFFFF":"#1C1C1C"
                 }}
               >
                 Total Sales
               </p>
-             <LastPieChart/>
+             <LastPieChart theme={dark} />
             </div>
           
           </div>

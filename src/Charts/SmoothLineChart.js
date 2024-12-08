@@ -1,7 +1,9 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
-
-const SnakeLineChart = () => {
+import { MyContext } from "../MyContext";
+import  { useContext } from "react";
+const SnakeLineChart = (theme) => {
+  const { dark } = useContext(MyContext);
   const option = {
     xAxis: {
       type: 'category',
@@ -17,11 +19,27 @@ const SnakeLineChart = () => {
         type: 'line',
         smooth: true,
         data: [25, 30, 5, 10, 15, 35],
-        itemStyle: {
-          color: '#cfdfea',
-        },
+        itemStyle: !dark
+        ? {
+            color: '#cfdfea',
+          }
+        : {
+            color: {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                { offset: 0, color: '#a9c4b4' }, // Start color
+                { offset: 1, color: '#a8e3c0' }, // End color
+              ],
+              global: false,
+            },
+          },
+      
         lineStyle: {
-          width: 2,
+          width: 4,
         },
         symbol: 'circle',
         symbolSize: 1,
@@ -31,11 +49,28 @@ const SnakeLineChart = () => {
         type: 'line',
         smooth: true,
         data: [5, 15, 30, 32, 20, 5],
-        itemStyle: {
-          color: '#000000',
-        },
+        itemStyle: !dark
+        ? {
+            color: '#000000',
+          }
+        : {
+            color: {
+              type: 'linear',
+              x: 0,
+              y: 0, // Adjusted for a valid linear gradient direction
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                { offset: 0, color: '#E5ECF6' }, // Start color
+                { offset: 1, color: '#8A8CD9' }, // End color
+              ],
+              global: false,
+            },
+          },
+      
+
         lineStyle: {
-          width: 2,
+          width: 4,
         },
         symbol: 'circle',
         symbolSize: 1,
