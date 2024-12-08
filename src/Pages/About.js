@@ -54,22 +54,7 @@ const OrderListData= [
 
 ]
 
-function getStatusColor(status) {
-  switch (status) {
-    case 'In Progress':
-      return '#8A8CD9';
-    case 'Complete':
-      return '#4AA785';
-    case 'Pending':
-      return '#59A8D4';
-    case 'Approved':
-      return '#FFC555';
-    case 'Rejeceted':
-      return '#FFFFFF66';
-    default:
-      return '#000000'; 
-  }
-}
+
 
 
 
@@ -121,6 +106,22 @@ function About() {
       color: dark?"#FFFFFF1A":"#1C1C1C33",
     },
   }));
+  function getStatusColor(status) {
+    switch (status) {
+      case 'In Progress':
+        return '#8A8CD9';
+      case 'Complete':
+        return '#4AA785';
+      case 'Pending':
+        return '#59A8D4';
+      case 'Approved':
+        return '#FFC555';
+      case 'Rejeceted':
+        return dark?'#FFFFFF66':'#1C1C1C66';
+      default:
+        return '#000000'; 
+    }
+  }
   return (
     <div className="containerabout">
        <p className="heading" style={{color:dark?"#FFFFFF":"#1C1C1C"}}>Order List</p>
@@ -195,8 +196,7 @@ function About() {
                <div style={{width:"8px",height:"8px",borderRadius:"50%",backgroundColor:getStatusColor(row.Status)}}></div>
                 {row.Status}</div>
                 </CustomTableCellBody>
-              <CustomTableCellBody   align="left">
-              </CustomTableCellBody>
+              
             </TableRow>
           ))}
           </TableBody>

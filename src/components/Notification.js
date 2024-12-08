@@ -42,7 +42,7 @@ function Notification() {
         <div className="notificationBox" >
       <p className="Notheading"  style={{color:dark?"#FFFFFF":"#1C1C1C"}}>Notifications</p>
       <div style={{marginTop:"28px"}}>
-      <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+      <div style={{ display: "flex", gap: "8px", alignItems: "center",flexWrap:"wrap" }}>
         <img
           src={bugImg}
           alt="bug"
@@ -59,7 +59,7 @@ function Notification() {
       </div>
 
       <div>
-      <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+      <div style={{ display: "flex", gap: "8px", alignItems: "center",flexWrap:"wrap" }}>
         <img
           src={user}
           alt="bug"

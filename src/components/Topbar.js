@@ -124,7 +124,7 @@ const Topbar = () => {
         </Breadcrumbs>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px",flexWrap:"wrap" }}>
         <StyledTextField
           type="search"
           id="search"

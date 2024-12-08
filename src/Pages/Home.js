@@ -108,6 +108,36 @@ const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
    fontSize:"12px",
      color:dark?"#FFFFFF":"#1C1C1C"
 }));
+
+const StyledTypographyPie = styled(Typography)(({ theme }) => ({
+  color: dark?"#FFFFFF":'#1C1C1C',
+  fontSize: '12px', 
+  textTransform: 'capitalize', 
+  fontFamily:"inter",
+  fontWeight:"400",
+  lineHeight:"18px"
+}));
+
+const PieData =[{name:"Direct",value:"300.56"},{name:"Affiliate",value:"135.18"},
+  {name:"Sponsored",value:"154.02"},{name:"E-mail",value:"48.96"}
+]
+
+
+function getStatusColor(name) {
+  switch (name) {
+    case 'Direct':
+      return dark?'#C6C7F8':"#000000";
+    case 'Affiliate':
+      return '#BAEDBD';
+    case 'Sponsored':
+      return '#95A4FC';
+    case 'E-mail':
+      return '#B1E3FF';
+    default:
+      return '#000000'; 
+  }
+}
+
   return (
     <div className="container">
      
@@ -116,8 +146,8 @@ const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
       
       <div style={{display:"flex",justifyContent:"center",width:"100%"}}>
       <div className="visualContainers" style={{width:"100%"}} >
-        <div className="visualContainer1">
-          <div className="visualContainer1a">
+        <div className='visualContainer1' >
+          <div className="visualContainer1a" >
             <div className="cardrow1" style={{maxWidth:"50%",width:"calc(50% - 14px)"}}>
               <Card
                 style={{
@@ -176,9 +206,9 @@ const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
                   </div>
                 </div>
               </Card>
-            </div>
+            </div> 
 
-            <div className="cardrow2" onClick={goToOrderList} style={{maxWidth:"50%",width:"calc(50% - 14px)"}}>
+             <div className="cardrow2" onClick={goToOrderList} style={{maxWidth:"50%",width:"calc(50% - 14px)"}}>
               <Card
                 style={{
                   padding: "24px 32px",
@@ -257,7 +287,7 @@ const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
 
         <div className="visualContainer2">
           <div className="visualContainer2a" style={{background:dark?"#282828": "#F7F9FB"}}>
-            <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+            <div style={{ display: "flex", gap: "16px", alignItems: "center",flexWrap:"wrap" }}>
               <p
                 style={{
                   fontFamily: "inter",
@@ -391,8 +421,7 @@ const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
 
           </div>
           <div className="visualContainer3b" style={{background:dark?"#282828": "#F7F9FB"}}>
-            <div style={{display:"flex",flexDirection:"column",alignItems:"center",
-              justifyContent:"center",height:"90%",justifyContent:"space-around"}}>
+            
             <p
                 style={{
                   fontFamily: "inter",
@@ -406,10 +435,21 @@ const CustomTableCellBody = styled(TableCell)(({ theme }) => ({
               >
                 Total Sales
               </p>
-             <LastPieChart theme={dark} />
-            </div>
-          
-          </div>
+             
+             <LastPieChart theme={dark}  />
+             <div style={{padding:"0px 0px 24px 0px"}}>
+             {PieData.map((item,index)=>(
+              
+              <div key={index} style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:"12px"}}>
+              <div style={{display:"flex",gap:"8px",alignItems:"center"}}>
+               <div style={{width:"8px",height:"8px",borderRadius:"50%",backgroundColor:getStatusColor(item.name)}}></div>
+               
+                <StyledTypographyPie>{item.name}</StyledTypographyPie>
+                </div>
+                <StyledTypographyPie style={{marginLeft:"8px"}}>${item.value}</StyledTypographyPie>
+              </div>))}
+              </div>
+          </div> 
         </div>
       </div>
       <div>

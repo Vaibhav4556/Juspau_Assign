@@ -10,6 +10,7 @@ import Contact from './Pages/Contact';
 import Notification from './components/Notification';
 import { MyContext } from "./MyContext";
 import { useState,useEffect } from 'react';
+import { useMediaQuery } from "@mui/material";
 const App = () => {
 const [showNotifiationPanel,SetShowNotificationPanel] =useState(false)
 
@@ -33,12 +34,14 @@ const toggleTheme = () => {
 };
 
 
+
+
   return (
     <MyContext.Provider
     value={{ handlePanel,showNotifiationPanel,dark,handleDarkTheme,toggleTheme }}
   >
     <BrowserRouter>
-      <div className="app" style={{background:dark?"black":"",minHeight:"93vh"}}>
+      <div className="app" style={{background:dark?"black":"#ffffff",minHeight:"93vh"}}>
         {/* Sidebar */}
         <div
           style={{
@@ -55,6 +58,7 @@ const toggleTheme = () => {
             borderColor:dark?"#FFFFFF1A":"#1C1C1C1A",
             background:dark?"#000000":""
           }}
+        
         >
           <Sidebar />
         </div>
@@ -66,14 +70,16 @@ const toggleTheme = () => {
             top: 0,
             left: "212px", 
             width: showNotifiationPanel
-              ? "calc(100% - 550px)" 
+              ? "calc(100% - 550px )" 
               : "calc(100% - 268px)", 
+              
             backgroundColor: "#ffffff",
             zIndex: 999,
             border: "1px solid #1C1C1C1A",
             padding: "20px 28px",
-            background:dark?"#000000":"",
+            background:dark?"#000000":"#ffffff",
             borderColor:dark?"#FFFFFF1A":"#1C1C1C1A",
+           
           }}
         >
           <Topbar />
@@ -87,6 +93,7 @@ const toggleTheme = () => {
               top: 0,
               right: 0,
               width: "248px",
+              
               height: "100vh",
               backgroundColor: "#ffffff",
               zIndex: 1000,
@@ -94,8 +101,9 @@ const toggleTheme = () => {
               padding: "16px 16px",
               border: "1px solid #1C1C1C1A",
               borderColor:dark?"#FFFFFF1A":"#1C1C1C1A",
-              background:dark?"black":""
+              background:dark?"black":"#ffffff"
             }}
+         
           >
             <Notification />
           </div>
@@ -104,13 +112,14 @@ const toggleTheme = () => {
         {/* Main Content */}
         <div
           style={{
-            marginTop: "68px",
+            marginTop: "60px",
             marginLeft: "212px", 
             width: showNotifiationPanel
               ? "calc(100% - 492px)" 
               : "calc(100% - 212px)", 
             overflowY: "auto",
             display: "flex",
+            padding:"28px 0px"
           }}
         >
           <div className="main-content" style={{ width: "100%" }}>
