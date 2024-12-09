@@ -21,7 +21,7 @@ You may also see any lint errors in the console.
  For time beinge I have not implemented theme and responsiveness.
  
 ########  Deployed app Link #####
-https://unrivaled-chimera-df532b.netlify.app/
+(https://sprightly-pasca-947026.netlify.app/)
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
